@@ -1,7 +1,6 @@
 package com.example.demo.Model;
 
 public class LoginModel {
-
 	private String email;
 	private String password;
 	public String getEmailID() {
