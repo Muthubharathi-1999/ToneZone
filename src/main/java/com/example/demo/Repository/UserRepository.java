@@ -23,6 +23,7 @@ public interface UserRepository extends JpaRepository<UserModel,String> {
 	boolean existsByPassword(String password);
 
 	UserModel findByemailAndPassword(String emailID, String password);
+	UserModel findByemail(String email);
 	
 }
 

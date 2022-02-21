@@ -1,3 +1,4 @@
+
 package com.example.demo.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public String isUserPresent(@RequestBody LoginModel login) {
 }
 @PostMapping(path="admin/login", consumes=MediaType.APPLICATION_JSON_VALUE)
 public String isAdminPresent(@RequestBody AdminModel login) {
+	System.out.println("inside admin");
 	return authservice.isAdminPresent(login);
 }
 }

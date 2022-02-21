@@ -13,7 +13,7 @@ public interface AdminRepository extends JpaRepository<AdminModel, String> {
 	//boolean existsByEmailAndexistsByPassword(String email,String password);
 	//@Query(value="select * from admins where email=:email")
 	AdminModel findByemailAndPassword(String email,String password);
-	
+	AdminModel findByemail(String email);
 	
 	boolean existsByEmail(String email);
 	boolean existsByPassword(String password);

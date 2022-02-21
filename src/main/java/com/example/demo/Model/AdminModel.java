@@ -42,5 +42,6 @@ public class AdminModel {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}	
+	}
+	
 }
