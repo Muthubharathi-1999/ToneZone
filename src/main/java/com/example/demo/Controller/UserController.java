@@ -28,26 +28,24 @@ public class UserController {
 		return userService.userSignup(user);
 	}
 
-	@GetMapping("/getUsers")
-	public List<User> getUsers(){
+	@GetMapping("/users/all")
+	public List<User> getUsers() {
 		return userService.getUsers();		
 	}
 	
 	@GetMapping("/displayUser")
-	public User displayUser(@RequestParam int UserID){
+	public User displayUser(@RequestParam int UserID) {
 		return userService.displayUser(UserID);		
 	}
 	
 	@PutMapping("/editUser")
-	public User editUser(@RequestBody User usermodel)
-	{
+	public User editUser(@RequestBody User usermodel) {
 		System.out.println(usermodel);
 		return userService.editUser(usermodel);
 	}
 	
 	@DeleteMapping("/deleteUser")
-	public void deleteUser(@RequestParam int UserID)
-	{
+	public void deleteUser(@RequestParam int UserID) {
 		userService.deleteUser(UserID);
 	}
 	
