@@ -13,7 +13,7 @@ public class UserModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "UserID")
-	private int UserID;
+	private Long UserID;
 	
 	@Column(name = "email")
 	private String email;
@@ -30,11 +30,11 @@ public class UserModel {
 	@Column(name = "userRole")
 	private String userRole;
 
-	public int getUserID() {
+	public Long getUserID() {
 		return UserID;
 	}
 
-	public void setUserID(int userID) {
+	public void setUserID(Long userID) {
 		UserID = userID;
 	}
 
