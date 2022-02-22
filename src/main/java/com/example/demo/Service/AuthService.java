@@ -26,17 +26,17 @@ public class AuthService {
 
 	
 	public String isUserPresent(LoginModel login) {
-		//System.out.println("mail:"+login.getEmailID());
+		// System.out.println("mail:"+login.getEmailID());
 		UserModel user = userrepository.findByemail(login.getEmailID());
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		//System.out.println("pass1:"+login.getPassword());
+		// System.out.println("pass1:"+login.getPassword());
 		JSONObject obj=new JSONObject(); 
-		//System.out.println("pass2:"+user.getPassword());
+		// System.out.println("pass2:"+user.getPassword());
 		ObjectMapper objectMapper = new ObjectMapper();
 		 if (passwordEncoder.matches(login.getPassword(),user.getPassword())) {
-		     //System.out.println("The encoding matches 'password'");	
+		     // System.out.println("The encoding matches 'password'");	
 			 {
-	    	//System.out.println("pass:"+encodePass.encode(login.getPassword()));
+	    	// System.out.println("pass:"+encodePass.encode(login.getPassword()));
 	    	JSONObject dataobj=new JSONObject(user); 
 	    	obj.put("data",dataobj); 
 			obj.put("login",true);
@@ -52,12 +52,12 @@ public class AuthService {
 	}
 	
 	public String isAdminPresent(AdminModel login) {	
-		//System.out.println("mail:"+login.getEmailID());
+		// System.out.println("mail:"+login.getEmailID());
 		AdminModel admin = adminrepository.findByemail(login.getEmailID());
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		//System.out.println("pass1:"+login.getPassword());
+		// System.out.println("pass1:"+login.getPassword());
 		JSONObject obj=new JSONObject();  
-		//System.out.println("pass2:"+admin.getPassword());
+		// System.out.println("pass2:"+admin.getPassword());
 		ObjectMapper objectMapper = new ObjectMapper();
 
 	    if (passwordEncoder.matches(login.getPassword(),admin.getPassword())) {
