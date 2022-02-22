@@ -1,10 +1,13 @@
 package com.example.demo.Services;
 
+import com.example.demo.Model.LoginModel;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import com.example.demo.Model.LoginModel;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.example.demo.Model.User;
+import com.example.demo.Model.UserModel;
 import com.example.demo.Repository.UserRepository;
 import java.util.List;
 
@@ -12,20 +15,20 @@ import java.util.List;
 public class UserService {
 	
 	@Autowired
-	UserRepository userReository;
+	UserRepository userRepository;
 	@Autowired
 	EncodePass encodePass;
 	
-	@SuppressWarnings("unchecked")
-	public String userSignup(User signup) 
+
+	public String userSignup(UserModel signup)
 	{
-		//User storedUserDetails = userReository.findByEmail(user.getEmail());
-		if(userReository.findByEmail(signup.getEmail()) != null) throw new RuntimeException("User Already Exists");
+
+		if(userRepository.findByemail(signup.getEmail()) != null) throw new RuntimeException("User Already Exists");
 		
 		
 		signup.setPassword(encodePass.encode(signup.getPassword()));
 		
-		User user=userReository.save(signup);
+		UserModel user=userRepository.save(signup);
 		
 		JSONObject obj=new JSONObject();
 		if(user==null) {
@@ -41,24 +44,53 @@ public class UserService {
 		return null;
 		
 	}
+
 	
 	public void deleteUser(long UserID) {
-		userReository.deleteById(UserID);
+		userRepository.deleteById(UserID);
 	}
 
-	public User editUser(User user) {
-		User um = userReository.getById(user.getId());
+	public UserModel editUser(UserModel user) {
+		UserModel um = userRepository.getById(user.getId());
 		um.setEmail(user.getEmail());
 		um.setPassword(user.getPassword());
-		return userReository.save(um);
+		return userRepository.save(um);
 	}
 
-	public List<User> getUsers() {
-		return (List<User>) userReository.findAll();
+	public List<UserModel> getUsers() {
+		return (List<UserModel>) userRepository.findAll();
 	}
 
-	public User displayUser(long userId) {
-		return userReository.findById(userId).get();
+	public UserModel displayUser(long userId) {
+		return userRepository.findById(userId).get();
+	}
+
+
+
+	public String isUserPresent(LoginModel login) {
+		// System.out.println("mail:"+login.getEmailID());
+		UserModel user = userRepository.findByemail(login.getEmailID());
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		// System.out.println("pass1:"+login.getPassword());
+		org.json.JSONObject obj=new org.json.JSONObject();
+		// System.out.println("pass2:"+user.getPassword());
+		ObjectMapper objectMapper = new ObjectMapper();
+		if (passwordEncoder.matches(login.getPassword(),user.getPassword())) {
+			// System.out.println("The encoding matches 'password'");
+			{
+				// System.out.println("pass:"+encodePass.encode(login.getPassword()));
+				org.json.JSONObject dataobj=new org.json.JSONObject(user);
+				obj.put("data",dataobj);
+				obj.put("login",true);
+				return obj.toString();
+			}
+		}
+		else {
+			org.json.JSONObject dataobj=new org.json.JSONObject();
+			obj.put("data",dataobj);
+			obj.put("login",false);
+			return obj.toString();
+		}
 	}
 	
 }

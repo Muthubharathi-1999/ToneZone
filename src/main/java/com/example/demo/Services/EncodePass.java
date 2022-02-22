@@ -1,11 +1,9 @@
-package com.example.demo.Service;
-import java.beans.JavaBean;
-import java.security.SecureRandom;
+package com.example.demo.Services;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.security.SecureRandom;
 
 @Service
 public class EncodePass {
