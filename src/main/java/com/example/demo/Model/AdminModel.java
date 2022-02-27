@@ -8,13 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "admins")
+public class AdminModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private int id;
 
-	@Column(name = "name", nullable = true, length = 20)
+	@Column(name = "name", nullable = false, length = 20)
 	private String name;
 	
 	@Column(nullable = false, /*unique = true,*/ length = 45)
@@ -24,8 +24,11 @@ public class User {
 	@Column(nullable = false, length = 64)
 	private String password;
 	
-	public long getId() {
+	public int getId() {
 		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public String getName() {
@@ -51,10 +54,5 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		return "UserModel [email=" + this.getEmail() + ", password=" + this.getPassword() + ", username=" + this.getName() + " ]";
 	}
 }

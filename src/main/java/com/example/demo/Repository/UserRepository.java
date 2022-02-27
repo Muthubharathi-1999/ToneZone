@@ -1,10 +1,17 @@
 package com.example.demo.Repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.example.demo.Model.User;
-
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.demo.Model.AdminModel;
+import com.example.demo.Model.UserModel;
 @Repository
-public interface UserRepository extends JpaRepository<User,Long> {
-	User findByEmail(String email);
+public interface UserRepository extends JpaRepository<UserModel,Long> {
+	UserModel findByemail(String email);
+	boolean existsByEmail(String email);
+	boolean existsByPassword(String password);
+
+	UserModel findByemailAndPassword(String email, String password);
+	
 }
+
+
