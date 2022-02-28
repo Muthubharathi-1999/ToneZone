@@ -14,7 +14,7 @@ public class AdminModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "name", nullable = false, length = 20)
+	@Column(name = "name", nullable = true, length = 20)
 	private String name;
 	
 	@Column(nullable = false, /*unique = true,*/ length = 45)
