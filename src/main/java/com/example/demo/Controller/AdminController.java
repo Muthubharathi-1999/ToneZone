@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.example.demo.Model.AdminModel;
 import com.example.demo.Services.AdminService;
 
-
 @RestController
 @CrossOrigin(origins="http://localhost:4200")
 @RequestMapping("/")
@@ -26,7 +25,6 @@ public class AdminController
 		return adminservice.adminSignup(admin);
 		
 	}
-
 
 	@PostMapping(path="admin/login", consumes=MediaType.APPLICATION_JSON_VALUE)
 	public String isAdminPresent(@RequestBody AdminModel login) {
